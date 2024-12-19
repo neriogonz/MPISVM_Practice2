@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using WebTeploobmenApp.Data;
+
 namespace WebTeploobmenApp
 {
     public class Program
@@ -8,6 +11,7 @@ namespace WebTeploobmenApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<TeploobmenContext>(o => o.UseSqlite("Data Source = Teploobmen.db"));
 
             var app = builder.Build();
 
@@ -28,7 +32,7 @@ namespace WebTeploobmenApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Parameters}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

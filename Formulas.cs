@@ -54,8 +54,8 @@ namespace WebTeploobmenApp
                 new("Средняя теплоёмкость воздуха при 200 градусах С", "cr", data?.Cr),
                 new("Расход окатышей", "cm", data?.Cm),
                 new("Теплоёмкость окатышей", "gm", data?.Gm),
-                new("Диаметр аппарата", "d", data?.D),
                 new("Величина альфа v", "av", data?.Av),
+                new("Диаметр аппарата", "d", data?.D),
             ];
         }
 
