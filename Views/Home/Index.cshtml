@@ -20,17 +20,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @foreach(Variant variant in Model)
-                {
+            @foreach(Variant variant in Model)
+            {
+                <tr>
                     <td>@variant.Id</td>
                     @foreach(var param in Formulas.Data.GetParameters(variant))
                     {
                         <td>@param.Value</td>
                     }
                     <td><a href="/home/parameters/@variant.Id">Расчёт</a></td>
-                }
-            </tr>
+                    <td><a href="/home/delete/@variant.Id">Удалить</a></td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

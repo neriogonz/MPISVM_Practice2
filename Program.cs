@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebTeploobmenApp.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebTeploobmenApp
 {
@@ -12,6 +13,9 @@ namespace WebTeploobmenApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<TeploobmenContext>(o => o.UseSqlite("Data Source = Teploobmen.db"));
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => options.LoginPath = "/auth");
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
@@ -28,6 +32,7 @@ namespace WebTeploobmenApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
