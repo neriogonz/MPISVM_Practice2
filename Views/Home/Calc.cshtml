@@ -36,4 +36,38 @@
             </tr>
         }
     </table>
+
+    <div id="chart1"></div>
+    <div id="chart2"></div>
+    <script>
+        var layerPositions = @Json.Serialize(Model.LayerPositions);
+        layerPositions.unshift("x");
+        var materialTemps = @Json.Serialize(Model.MaterialTemperatures);
+        materialTemps.unshift("Температура окатышей, С");
+        var gasTemps = @Json.Serialize(Model.GasTemperatures);
+        gasTemps.unshift("Температура воздуха, С");
+        var tempsDiffs = @Json.Serialize(Model.TemperatureDifferences);
+        tempsDiffs.unshift("Разность температур, С");
+        var chart = c3.generate({
+            bindto: '#chart1',
+            data: {
+                x: 'x',
+                columns: [
+                    layerPositions,
+                    materialTemps,
+                    gasTemps,
+                ]
+            }
+        });
+        var chart2 = c3.generate({
+            bindto: '#chart2',
+            data: {
+                x: 'x',
+                columns: [
+                    layerPositions,
+                    tempsDiffs,
+                ]
+            }
+        });
+    </script>
 </div>

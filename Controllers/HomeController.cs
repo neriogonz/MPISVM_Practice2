@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using WebTeploobmenApp.Data;
 using WebTeploobmenApp.Models;
@@ -51,6 +52,18 @@ namespace WebTeploobmenApp.Controllers
                 {
                     result[y, i] = Math.Round(result[y, i], 2);
                 }
+            }
+
+            viewModel.MaterialTemperatures = new List<double>();
+            viewModel.GasTemperatures = new List<double>();
+            viewModel.LayerPositions = new List<double>();
+            viewModel.TemperatureDifferences = new List<double>();
+            for (int i = 0; i < yCount; i++)
+            {
+                viewModel.LayerPositions.Add(i / 2.0);
+                viewModel.MaterialTemperatures.Add(result[i, 5]);
+                viewModel.GasTemperatures.Add(result[i, 6]);
+                viewModel.TemperatureDifferences.Add(result[i, 7]);
             }
 
             viewModel.ResultTable = result;
